@@ -5,20 +5,23 @@
 import { Router } from 'express';
 import { fork } from 'child_process';
 
-const ruta = Router();  // Por ej: /randoms?cant=20000
+const ruta = Router();  // Por ej: /?cantidad=20000
 
 
-ruta.get("/", (solicitud, respuesta) => {
+ruta.get("/:cantidad?", (solicitud, respuesta) => {
     try {
         const cantidadNumPedidos = solicitud.query.cantidad || 100000000; //probar con 500000000
 
-        const subProceso = fork('./subProceso.js');
+        // const subProceso = fork('./src/SubProceso-Fork/index.js');
+        const Utilidades = fork('./src/Utilidades/utils-randoms.js');
 
-        subProceso.send({ success: true, respuesta: cantidadNumPedidos });
+        // subProceso.send(Number(cantidadNumPedidos));
+        Utilidades.send(Number(cantidadNumPedidos));
 
-        subProceso.on('message', (datosUtils) => {
-            const objetoNumAleatorios = Object.entries(datosUtils)
-            respuesta.render('view/randoms', { respuesta: objetoNumAleatorios })
+        Utilidades.on('message', (resultadoUtils) => {
+            console.log({ resultadoUtils })
+
+            respuesta.render("view/randoms", { resultadoUtils })
         })
     } catch (error) {
         respuesta.send(error, 'Error en la ruta Randoms');

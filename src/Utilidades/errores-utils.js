@@ -1,4 +1,7 @@
 
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~| Errores Utils |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+
 const ERROR_CARRITO = "No se encontro el Carrito solicitado";
 const ERROR_PRODUCTO = "No se encontro el producto solicitado";
 const ERROR_MENSAJES = "No se encontraron los mensajes solicitados";

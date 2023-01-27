@@ -1,7 +1,6 @@
 
 import { DaoProducto } from "../../Dao/index.js";
-import { FECHA_UTILS, ERRORES_UTILS, JOI_VALIDADOR, LOGGER_UTILS } from "../../Utilidades/index.js";
-import { crearProductosFake } from "../../Utilidades/mocks-utils/index.js";
+import { FECHA_UTILS, ERRORES_UTILS, JOI_VALIDADOR, LOGGER_UTILS, logger } from "../../Utilidades/index.js";
 
 
 
@@ -14,7 +13,8 @@ const obtenerTodos = async (solicitud, respuesta) => {
         }
         respuesta.send(producto);
     } catch (error) {
-        respuesta.send({ error, error: "Error al obtener los productos solicitados" })
+        logger.error({ error, error: "Error al obtener los productos solicitados" })
+        // respuesta.send({ error, error: "Error al obtener los productos solicitados" })
     }
 };
 
@@ -26,7 +26,8 @@ const obtenerXid = async (solicitud, respuesta) => {
 
         respuesta.send(producto);
     } catch (error) {
-        respuesta.send({ error, error: "Error al obtener el productos solicitado" })
+        logger.error({ error, error: "Error al obtener el producto solicitados" })
+        // respuesta.send({ error, error: "Error al obtener el producto solicitado" })
     }
 };
 
@@ -44,7 +45,8 @@ const crearProducto = async (solicitud, respuesta) => {
         respuesta.send(productoCreado);
     } catch (error) {
         await LOGGER_UTILS.addLog(error);
-        respuesta.send({ error, error: "Error al crear el producto solicitado" })
+        logger.error({ error, error: "Error al crear el producto solicitado" })
+        // respuesta.send({ error, error: "Error al crear el producto solicitado" })
     }
 };
 
@@ -56,17 +58,8 @@ const eliminarXid = async (solicitud, respuesta) => {
 
         respuesta.send({ success: true });
     } catch (error) {
-        respuesta.send({ error, error: "Error al eliminar el producto solicitado" })
-    }
-};
-
-const obtenerProdsTest = async (solicitud, respuesta) => {
-    try {
-        const productosFake = crearProductosFake(5)
-
-        respuesta.send({ success: true, data: productosFake })
-    } catch (error) {
-        respuesta.send({ error, error: "Error al obtener los productos Fake solicitados" })
+        logger.error({ error, error: "Error al eliminar el producto solicitado" })
+        // respuesta.send({ error, error: "Error al eliminar el producto solicitado" })
     }
 };
 
@@ -75,7 +68,6 @@ export const controladorProductos = {
     obtenerXid,
     crearProducto,
     eliminarXid,
-    obtenerProdsTest,
 };
 
 

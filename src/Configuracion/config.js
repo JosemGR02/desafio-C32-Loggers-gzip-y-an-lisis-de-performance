@@ -10,7 +10,7 @@ const USUARIOS_ARCHIVONOMBRE = "usuarios";
 
 const config = {
     SERVER: {
-        PUERTO: process.env.PORT || 8080,
+        PUERTO: process.env.PUERTO || 8080,
         SELECCION_BASEdDATOS: process.env.BASEDATOS_SELECCIONADA ?? "memory",
     },
     DATABASES: {
@@ -24,7 +24,7 @@ const config = {
             url: process.env.BASEDATOS_MONGO_URL,
             dbName: process.env.BASEDATOS_MONGO_NOMBRE
         }
-    }
+    },
 };
 
 export { config };
