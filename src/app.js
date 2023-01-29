@@ -61,12 +61,10 @@ const args = yargs
     .default({
         modo: "FORK",
         puerto: 8080,
-        logger: "DEV"
     })
     .alias({
         m: "modo",
         p: "puerto",
-        l: "logger"
     })
     .argv;
 
