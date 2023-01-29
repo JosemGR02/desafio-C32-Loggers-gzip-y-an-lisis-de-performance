@@ -5,8 +5,8 @@
 
 import compression from "compression";
 import { Router } from "express";
-import { INFO_UTILS, logger } from "../../Utilidades/index.js";
-// import { logger } from '../../Configuracion/logger.js';
+import { INFO_UTILS } from "../../Utilidades/index.js";
+import { logger } from '../../Configuracion/logger.js';
 
 
 const ruta = Router();
