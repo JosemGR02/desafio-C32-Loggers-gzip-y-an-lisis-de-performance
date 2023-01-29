@@ -38,7 +38,7 @@ ruta.get("/bloq", compression(), (solicitud, respuesta) => {
 export { ruta as RutaInfo };
 
 
-//(realizar el test con --prof de node.js y procesarlos con --prof-process)
+
 
 
 
