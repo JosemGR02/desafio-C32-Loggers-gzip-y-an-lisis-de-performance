@@ -18,32 +18,37 @@ ruta.get("/login", estaAutenticado, (solicitud, respuesta) => {
 
 ruta.post("/login", passport.authenticate("login", { failureRedirect: "/api/autenticacion/error-login" }),
     (solicitud, respuesta) => {
-        respuesta.redirect("/");
+        respuesta.redirect("/api/autenticacion");
     }
 );
 
 // Registrarse
-ruta.get("/signup", (solicitud, respuesta) => {
-    respuesta.render("view/home", { email: solicitud.respuestaUsuario });
+ruta.get("/signup", estaAutenticado, (solicitud, respuesta) => {
+    respuesta.render("view/signup");
 });
 
-ruta.post("/signup", passport.authenticate("signup", { failureRedirect: "/api/autenticacion/error-signup" }),
-    (solicitud, respuesta) => {
-        respuesta.redirect("/");
-    }
-);
+ruta.post('/signup', passport.authenticate('signup', {
+    successRedirect: '/api/autenticacion', failureRedirect: '/api/autenticacion/error-signup'
+}));
+
 
 // Cerrar Sesion
 ruta.get("/logout", (solicitud, respuesta) => {
-    solicitud.logout();
-    respuesta.render("view/logout", { email: solicitud.respuestaUsuario });
+    try {
+        const { email } = solicitud.user;
+
+        solicitud.logout(error => {
+            if (error) {
+                respuesta.send(`${error}, Error al desloguearse`);
+            } else {
+                respuesta.render('view/logout', { email });
+            }
+        });
+    } catch (error) {
+        respuesta.send(`${error}, Error en el logout`);
+    }
 });
 
-// const { email } = req.body
-// res.render('logout', { email }) {{email}}
-
-// Deserializar
-// const respuestaUsuario = await DaoUsuario.obtenerXid(id);
 
 // Rutas Errores
 ruta.get("/error-login", (solicitud, respuesta) => {
@@ -58,4 +63,3 @@ ruta.get("/error-signup", (solicitud, respuesta) => {
 
 
 export { ruta as RutAutenticacion };
-

@@ -4,7 +4,7 @@
 
 +++++++++++++++( Profiler y Artillery: )++++++++++++++++++
 
-[ --prof ]
+|=========| [ --prof ]
 
 node --prof src/app.js
 
@@ -15,10 +15,10 @@ curl -X GET "http://localhost:8080/api/info/nobloq"
 
 ------------------------------------------
 
-[ artillery ]
+|=========| [ artillery ]
 
-artillery quick --count 20 -n 50 "http://localhost:8080/bloq
-artillery quick --count 20 -n 50 "http://localhost:8080/nobloq
+artillery quick --count 20 -n 50 "http://localhost:8080/api/info/bloq" > resultado_bloq.txt
+artillery quick --count 20 -n 50 "http://localhost:8080/api/info/nobloq" > resultado_nobloq.txt
 
 (( artillery quick --count 20 -n 50 "http://localhost:8080/auth-bloq?username=marian&password=qwerty123" > resultado_bloq.txt ))
 
@@ -30,7 +30,7 @@ isolate.log a bloq_v8.log
 
 ------------------------------------------
 
-[ -process ]
+|=========| [ -process ]
 
 decodificar bloqueante:
 
@@ -48,7 +48,9 @@ node --prof-process nobloq-v8.log > result_prof-nobloq.txt
 
 npm run start  (0x app.js)  (FORK)
 
-curl -X GET 'http://localhost:8080/nobloq
+curl -X GET 'http://localhost:8080/api/info/bloq
+
+curl -X GET 'http://localhost:8080/api/info/nobloq
 
 npm run test (node benchmark.js)
 

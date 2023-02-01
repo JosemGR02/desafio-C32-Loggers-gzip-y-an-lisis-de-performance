@@ -8,7 +8,7 @@
     "start": "0x src/app.js",
     "test": "node src/benchmark.js",
     "dev": "nodemon src/app.js",
-    "prod": "LOGGER_MODO=PROD node src/app.js"
+    "prod": "set LOGGER_MODO=PROD && node src/app.js"
   },
   "keywords": [],
   "author": "",

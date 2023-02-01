@@ -12,13 +12,11 @@ ruta.get("/:cantidad?", (solicitud, respuesta) => {
     try {
         const cantidadNumPedidos = solicitud.query.cantidad || 100000000; //probar con 500000000
 
-        // const subProceso = fork('./src/SubProceso-Fork/index.js');
-        const Utilidades = fork('./src/Utilidades/utils-randoms.js');
+        const subProceso = fork('./src/SubProceso-Fork/index.js');
 
-        // subProceso.send(Number(cantidadNumPedidos));
-        Utilidades.send(Number(cantidadNumPedidos));
+        subProceso.send(Number(cantidadNumPedidos));
 
-        Utilidades.on('message', (resultadoUtils) => {
+        subProceso.on('message', (resultadoUtils) => {
             console.log({ resultadoUtils })
 
             respuesta.render("view/randoms", { resultadoUtils })
@@ -29,4 +27,6 @@ ruta.get("/:cantidad?", (solicitud, respuesta) => {
 })
 
 export { ruta as RutaRandoms };
+
+
 

@@ -15,13 +15,5 @@ const generadorNumRandoms = (cantidadNumPedidos) => {
     return repetidos;
 }
 
+export const RANDOMS_UTILS = { generadorNumRandoms };
 
-process.on('message', (cantidadNumPedidos) => {
-
-    console.log(`cantidad: ${cantidadNumPedidos}`);
-    const resultadoUtils = generadorNumRandoms(cantidadNumPedidos);
-
-    process.send(resultadoUtils);
-});
-
-// export const RANDOMS_UTILS = { generadorNumRandoms };

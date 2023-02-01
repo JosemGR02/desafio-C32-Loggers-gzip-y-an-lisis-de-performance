@@ -16,6 +16,7 @@ import { RutaRandoms, RutAutenticacion, RutaInfo, RutaServidor, RutaProducto, Ru
 import { PassportAutenticacion } from './Servicios/index.js';
 import { config } from './Configuracion/config.js';
 import { logger } from './Configuracion/logger.js';
+import { RutaInexistente } from './Middlewares/index.js';
 
 
 const app = express();
@@ -85,9 +86,9 @@ app.use('/api/', RutaServidor)
 app.use('/api/info', RutaInfo)
 app.use('/api/randoms', RutaRandoms)
 app.use('/api/autenticacion', RutAutenticacion);
-
 app.use('/api/mensajes', RutaMensajes);
 app.use('/api/productos', RutaProducto);
+app.use('/api/*', RutaInexistente)
 
 
 
