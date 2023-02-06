@@ -2,6 +2,7 @@ import passport from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
 import { BCRYPT_VALIDADOR, ERRORES_UTILS } from '../../Utilidades/index.js';
 import { DaoUsuario } from "../../Dao/index.js";
+import { logger } from "../../Configuracion/logger.js";
 
 
 const iniciar = () => {
@@ -38,7 +39,7 @@ const iniciar = () => {
 
             return done(null, usuario);
         } catch (error) {
-            console.log(`${error}, Error en Passport - inicio Sesion`);
+            logger.error(`${error}, Error en Passport - inicio Sesion`);
         }
     }))
 
@@ -51,7 +52,7 @@ const iniciar = () => {
         try {
             const usuarioYaExiste = await DaoUsuario.obtenerUno({ 'email': usuario });
             if (usuarioYaExiste) {
-                console.log('User already exists with username: ' + usuario);
+                logger.info('User already exists with username: ' + usuario);
                 return done(null, false);
             } else {
                 const nuevoUsuario = {
@@ -59,11 +60,11 @@ const iniciar = () => {
                     contraseña: BCRYPT_VALIDADOR.crearContraHash(contraseña)
                 }
                 const crearUsuario = await DaoUsuario.guardar(nuevoUsuario)
-                console.log(`Usuario ${crearUsuario} registrado correctamente`);
+                logger.info(`Usuario ${crearUsuario} registrado correctamente`);
                 return done(null, crearUsuario);
             }
         } catch (error) {
-            console.log(`${error}, Error en Passport - Registro`);
+            logger.error(`${error}, Error en Passport - Registro`);
         }
     }))
 }

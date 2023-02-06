@@ -69,7 +69,7 @@ const args = yargs
     })
     .argv;
 
-const PUERTO = args.puerto || config.SERVER.PORT
+const PUERTO = args.puerto || config.SERVER.PUERTO
 
 // const LOGGER = args.logger || DEV
 
@@ -121,7 +121,8 @@ if (args.modo == 'CLUSTER') {
     }
 } else {
     logger.info('Ejecucion en Modo Fork')
-    logger.warn(`Prueba implementada, xd`)
+    logger.warn('Prueba implementada, xd')
+    logger.error('ERROR implementado')
     // let fork = false
     // if (!fork) logger.error(`erororor`)
 

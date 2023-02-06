@@ -1,6 +1,7 @@
 
 import { DaoMensaje } from "../../Dao/index.js";
-import { FECHA_UTILS, ERRORES_UTILS, LOGGER_UTILS, logger } from "../../Utilidades/index.js";
+import { FECHA_UTILS, ERRORES_UTILS, LOGGER_UTILS } from "../../Utilidades/index.js";
+import { logger } from "../../Configuracion/logger.js";
 
 
 const ObtenerMensajes = async (solicitud, respuesta) => {
