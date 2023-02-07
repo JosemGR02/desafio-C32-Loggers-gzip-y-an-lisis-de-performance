@@ -71,7 +71,7 @@ const args = yargs
 
 const PUERTO = args.puerto || config.SERVER.PUERTO
 
-// const LOGGER = args.logger || DEV
+
 
 // Motor de plantilla
 app.engine("hbs", handlebars.engine({ extname: ".hbs", defaultLayout: "main.hbs" }));
@@ -123,8 +123,6 @@ if (args.modo == 'CLUSTER') {
     logger.info('Ejecucion en Modo Fork')
     logger.warn('Prueba implementada, xd')
     logger.error('ERROR implementado')
-    // let fork = false
-    // if (!fork) logger.error(`erororor`)
 
     // Servidor
     app.listen(PUERTO, async () => {

@@ -34,11 +34,11 @@ isolate.log a bloq_v8.log
 
 decodificar bloqueante:
 
-node --prof-process bloq-v8.log > result_prof-bloq.txt
+node --prof-process bloq-v8.log > result_prof-bloq.txt  
 
 decodificar nobloqueante:
 
-node --prof-process nobloq-v8.log > result_prof-nobloq.txt
+node --prof-process nobloq-v8.log > result_prof-nobloq.txt  
 
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -71,8 +71,6 @@ Ctrl c => ir a pag.
 +++++++++++++++( conclusión del análisis de los datos: )++++++++++++++++++
 
 
+Incluir informe en formato pdf sobre las pruebas realizadas incluyendo los resultados de todos los test (texto e imágenes).     :(
 
 
-
-
-Incluir informe en formato pdf sobre las pruebas realizadas incluyendo los resultados de todos los test (texto e imágenes). 
