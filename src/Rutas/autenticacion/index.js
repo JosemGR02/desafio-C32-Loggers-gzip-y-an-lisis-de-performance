@@ -63,3 +63,5 @@ ruta.get("/error-signup", (solicitud, respuesta) => {
 
 
 export { ruta as RutAutenticacion };
+
+
