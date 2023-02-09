@@ -12,6 +12,7 @@ ruta.get("/:id", controladorProductos.obtenerXid);
 
 ruta.post("/", controladorProductos.crearProducto);
 
+
 ruta.delete("/:id", controladorProductos.eliminarXid);
 
 export { ruta as RutaProducto };
